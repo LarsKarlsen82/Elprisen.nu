@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="#">
+    <link rel="manifest" href="./manifest.json">
+    <script src="https://kit.fontawesome.com/7631ec8517.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="./assets/js/script.js" defer></script>
+    <title>Elpriser.nu</title>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <a href="index.html">
+                <img src="./assets/images/android/android-launchericon-512-512.png" alt="Logo">
+            </a>
+        </div>
+        <ul>
+            <li><a href="oversigt.html">OVERSIGT</a></li>
+            <li> <a href="#">LIGE NU</a></li>
+            <li> <a href="historik.html">HISTORIK</a></li>
+        </ul>
+    </nav>
+
+    <section>
+        <a href="settings.html">
+            <div class="settings">
+                <i class="fas fa-gear"></i>
+            </div>
+        </a>
+    </section>
+
+    <section class="elpriser">
+        <div>
+            <h1>ELPRISEN LIGE NU</h1>
+            <div class="circle">
+                <p id="elpris"></p>
+            </div>
+        </div>
+    </section>
+    
+    <section>
+        <div class="IndexTime"><p id="time"></p></div>
+    </section>
+v
+    <footer>
+        <p> Priserne er <span style="color: var(--lime);">ex.moms</span> og afgifter
+            <br>
+     Du vises lige nu priserne for <span style="color: var(--lime);">Øst Danmark</span></p>
+    </footer>
+
+<!-- Register the service worker -->
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('ServiceWorker.js')
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+                console.error('Service Worker registration failed:', error);
+            });
+    }
+</script>
+</body>
+</html>

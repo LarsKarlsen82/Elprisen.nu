@@ -1,0 +1,634 @@
+/*************************
+***  GENERAL SETTINGS  ***
+*************************/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+  
+  }
+  
+body {
+    background-color: var(--darkgrey);
+    scroll-behavior: auto;
+    font-family: 'Roboto', sans-serif;
+  }
+
+:root{
+    /* root colors */
+    --darkgrey: #27282B;
+    --dark: #201E1E;
+    --lime: #55EC20;
+    --lightgrey: #ebebeb;
+    --grey:#808080;
+
+  }
+
+
+/* MOBILE STYLES */
+
+/* NAV indstilligner */
+nav {
+    background-color: var(--dark);
+    overflow: hidden;
+    color: var(--lightgrey);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.logo img {
+    width: 50px; /* Juster bredden efter behov */
+    height: auto;
+    margin-right: 20px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+li {
+    margin: 0 15px;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    color: var(--lime);
+}
+
+
+
+/* Tandhjul knap til top højre */
+.settings {
+    margin-left: 90% !important;; /* Placerer .settings til højre kant af forældrecontaineren */
+    margin-right: 200px; /* Tilføj margin til højre for at justere ikonets position */
+    margin-top: 4%;
+    font-size: 1.7em;
+    color: var(--lime); /* Ændrer ikonfarven til limegrøn */
+}
+
+
+/* EL PRISER SEKTIONEN */
+.elpriser {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 65vh;
+    background-color: var(--darkgrey);
+    margin: 2em;
+}
+
+.elpriser div {
+    text-align: center;
+}
+
+.elpriser h1 {
+    color: var(--lightgrey);
+    font-weight: 300;
+    font-size: xx-large;
+}
+
+.circle {
+    position: relative;
+    margin: 20px;
+    height: 20em;
+    width: 20em;
+    background-color: var(--dark);
+    border-radius: 50%;
+    overflow: hidden; /* Ensure content inside the circle is hidden when rotating */
+    margin-top: 25%;
+    box-shadow: 2px 0 5px 5px var(--grey);
+}
+
+.circle p {
+    text-align: center;
+    color: var(--lime);
+    font-weight: bold;
+    font-size: xx-large;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.circle:before {
+    position: absolute;
+    content: '';
+    height: 90%; 
+    width:90%; 
+    border: 2px dashed var(--lime);
+    border-radius: 50%;
+    animation: spin 60s linear infinite;
+    transform-origin: center; /* Set the rotation origin to the center of the element */
+    top: 5%; /* Position from the top center of the circle */
+    left: 5%; /* Position from the left center of the circle */
+}
+.circle:after {
+    position: absolute;
+    content: '';
+    height: 80%; 
+    width:80%; 
+    border: 2px dashed var(--lime);
+    border-radius: 50%;
+    animation: spin 60s linear infinite reverse;
+    transform-origin: center; /* Set the rotation origin to the center of the element */
+    top: 10%; /* Position from the top center of the circle */
+    left: 10%; /* Position from the left center of the circle */
+}
+
+@keyframes spin { 
+    100% { 
+        transform: rotateZ(-360deg);
+    }
+}
+
+
+.IndexTime{
+    height: 40vh;;
+}
+.IndexTime p {
+top: 90% !important;
+}
+.IndexTime p {
+    text-align: center;
+    color: var(--lime);
+    font-weight: bold;
+    font-size: large;
+    margin: 0;
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+footer {
+    background-color: var(--dark);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 15%;
+    color: white;
+    text-align: center; /* Centrer teksten */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+footer p {
+display: inline-block;
+}
+
+/* HISTORIK HTML */
+
+.historik {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 1vh;
+    background-color: var(--darkgrey);
+    margin: 2em;
+    top: 60%;
+}
+
+.historik div {
+    text-align: center;
+}
+
+
+.historik h1 {
+    color: var(--lightgrey);
+    font-weight: 300;
+    font-size: xx-large;
+}
+
+
+.date-container {
+    top: 20%;
+    display: flex;
+    align-items: center;
+    font-size: 18px;
+    background-color: var(--dark);
+    color:var(--lightgrey);
+    margin: 15%;
+    padding: 5%;
+    height: 2.5em;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 2px solid transparent; /* Set initial border style */
+    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
+    position: relative;
+    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
+}
+
+.date-container:hover {
+    border-color: var(--lime); /* Change the border color on hover */
+}
+
+/* Add a glow effect using box-shadow */
+.date-container:focus {
+    outline: none;
+    box-shadow: 0 0 10px 5px var(--lime);
+    border-color: transparent; /* Hide the border when the glow effect is active */
+}
+
+.date {
+    margin-right: 10px;
+}
+
+
+.historik-time {
+    height: 100vh;
+    justify-content: space-around; /* Adjust the space between circles */
+    scroll-behavior: smooth;
+}
+
+.historik-time-container {
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+    font-size: 18px;
+    background-color: var(--dark);
+    color:var(--lightgrey);
+    margin: 10px auto;
+    max-width: 15em;
+    padding: 20px;
+    height: 2em;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 2px solid transparent; /* Set initial border style */
+    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
+    position: relative;
+    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
+}
+
+.historik-time-container:hover {
+    border-color: var(--lime);
+}
+
+.historik-time-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.historik-time-value {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.historik-time-container:focus {
+    outline: none;
+    box-shadow: 0 0 10px 5px var(--lime);
+    border-color: transparent;
+}
+
+.calendar-icon {
+    cursor: pointer;
+    color: var(--lime);
+    margin-left: auto;
+}
+
+.centered-text {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px; /* Adjust padding as needed */
+    font-size: 18px;
+    color: var(--lightgrey);
+    width: 80%; /* Set a width to limit the container size */
+    text-transform: uppercase; /* Convert text to uppercase */
+}
+
+/* ------------------------------------------------------------------------------------ */
+
+/* Oversigt CSS */
+
+.circleHead {
+    height: 80vh;
+    justify-content: space-around; /* Adjust the space between circles */
+}
+
+.circleHead-container {
+    bottom: 70%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+    font-size: 18px;
+    background-color: var(--dark);
+    color:var(--lightgrey);
+    margin: 10px auto;
+    max-width: 15em;
+    padding: 20px;
+    height: 100%;
+    width: 100%;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 2px solid transparent; /* Set initial border style */
+    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
+    position: relative;
+    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
+}
+
+.circleHead-container:hover {
+    border-color: var(--lime);
+}
+
+.circleHead-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.circleHead-value {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.circleHead-container:focus {
+    outline: none;
+    box-shadow: 0 0 10px 5px var(--lime);
+    border-color: transparent;
+}
+
+
+.oversigt-text {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px; /* Adjust padding as needed */
+    font-size: 30px !important;
+    color: var(--lightgrey);
+    width: 80%; /* Set a width to limit the container size */
+    text-transform: uppercase; /* Convert text to uppercase */
+}
+
+.circles-container {
+    position: relative;
+    display: flex;
+    justify-content: space-around; /* Adjust the space between circles */
+    margin: auto;
+    height:30vh;
+}
+
+.circle-oversigt, .circle-oversigt2 {
+    position: relative;
+    margin: 1em 1em 1em 15%;
+    padding: 1em 15% 10% 10%;
+    height: 60%;
+    left: 14%;
+    background-color: var(--dark);
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 15%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    color: var(--lime);
+    font-weight: bold;
+    font-size: xx-large;
+    transform: translate(-50%, -50%);
+}
+
+.circle-oversigt:before,
+
+.circle-oversigt2:before {
+    position: absolute;
+    content: '';
+    height: 70%; 
+    width: 70%; 
+    border: 2px dashed var(--lime);
+    border-radius: 50%;
+    animation: spin 60s linear infinite;
+    transform-origin: center;
+    top: 5%;
+    left: 5%;
+}
+
+.circle-oversigt:after,
+.circle-oversigt2:after {
+    animation: spin 60s linear infinite reverse;
+}
+
+@keyframes spin { 
+    100% { 
+        transform: rotateZ(-360deg);
+    }
+}
+
+.circle-label {
+    position: absolute;
+    text-align: center;
+    color: var(--lightgrey);
+    font-size: 16px;
+    margin-top: 10px; /* Adjust the margin as needed */
+    top: 60%;
+    right: 60%;
+}
+.circle-label2 {
+    position: absolute;
+    text-align: center;
+    color: var(--lightgrey);
+    font-size: 16px;
+    margin-top: 10px; /* Adjust the margin as needed */
+    top: 60%;
+    left: 60%;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100px;
+
+}
+
+
+.top-text {
+    font-size: 14px; /* Adjust the font size as needed */
+    font-weight: 400;
+    line-height: 1.2; /* Adjust the line height as needed */
+    color: var(--lightgrey);
+}
+.bottom-text {
+    font-size: 10px; /* Adjust the font size as needed */
+    font-weight: 300;
+    line-height: 1.2; /* Adjust the line height as needed */
+    color: var(--lightgrey);
+}
+
+.oversigt-text {
+    font-size: 18px; /* Adjust the font size for "oversigt" text */
+    margin-bottom: 1em; /* Add margin at the bottom of "oversigt" text */
+    text-align: center;
+}
+
+.time {
+    height: 80vh;
+    justify-content: space-around; /* Adjust the space between circles */
+}
+
+.time-container {
+    bottom: 50%;
+    display: flex;
+    justify-content: space-between;
+    overflow: hidden;
+    align-items: center;
+    font-size: 18px;
+    background-color: var(--dark);
+    color:var(--lightgrey);
+    margin: 10px auto;
+    max-width: 15em;
+    padding: 20px;
+    height: 2em;
+    border-radius: 0.5em;
+    overflow: hidden;
+    border: 2px solid transparent; /* Set initial border style */
+    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
+    position: relative;
+    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
+}
+
+.time-container:hover {
+    border-color: var(--lime);
+}
+
+.time-label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.time-value {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.time-container:focus {
+    outline: none;
+    box-shadow: 0 0 10px 5px var(--lime);
+    border-color: transparent;
+}
+
+
+
+/* --------------------------------------------------------------- */
+
+/* Indstillinger */
+
+.tester {
+    color: var(--lightgrey);
+    text-transform: uppercase;
+    height: 60vh;
+  
+}
+
+.settings-text {
+    font-size: xx-large;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--lightgrey);
+    margin: 10%;
+}
+
+
+
+.toggle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--lightgrey);
+}
+
+.burger-container {
+    display: flex;
+    align-items: center;
+}
+
+.burger-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.burger-menu {
+    display: none;
+    /* Initially hide the menu */
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.burger-menu p {
+    margin: 5px 0;
+}
+
+#priser-toggle:checked~.toggle-section,
+#alarm-toggle:checked~.toggle-section,
+#region-toggle:checked~.toggle-section {
+    display: none;
+}
+
+
+input[type="checkbox"] {
+    position: relative;
+    width: 80px;
+    height: 35px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--dark);
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+
+  }
+  
+  input[type="checkbox"]::before {
+    content: "";
+    width: 40px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--lime);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;  border: 2px dashed var(--lime)
+
+  }
+  
+  input[type="checkbox"]:checked::before {
+    transform: translateX(100%);
+    background: var(--lime);
+    border: 2px dashed var(--lime);
+  }
+  
+  input[type="checkbox"]:checked {
+    background: var(--dark);
+    border: 2px dashed var(--lime);
+
+  }
+  
+
+
+/* MEDIA QUERIES */
+@media (min-width: 375px) {
+    /* Styles for screens wider than 375px */
+    .settings {
+        margin-left: auto;
+    }
+}
