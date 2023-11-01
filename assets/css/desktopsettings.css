@@ -1,0 +1,153 @@
+/* Indstillinger */
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(0, 0, 0, 0); /* Transparent background */
+    font-family: 'Roboto', sans-serif;
+    overflow: hidden;
+}
+
+
+:root{
+    /* root colors */
+    --darkgrey: #27282B;
+    --dark: #201E1E;
+    --lime: #55EC20;
+    --lightgrey: #ebebeb;
+    --grey:#808080;
+
+  }
+
+.tester {
+    color: var(--lightgrey);
+    text-transform: uppercase;
+}
+
+.settings-text {
+    font-size: xx-large;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--lightgrey);
+    margin: 10%;
+}
+
+.toggle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--lightgrey);
+}
+
+.burger-container {
+    display: flex;
+    align-items: center;
+}
+
+.burger-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.burger-menu {
+    display: none;
+    /* Initially hide the menu */
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.burger-menu p {
+    margin: 5px 0;
+}
+
+#priser-toggle:checked~.toggle-section,
+#alarm-toggle:checked~.toggle-section,
+#region-toggle:checked~.toggle-section {
+    display: none;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    width: 80px;
+    height: 35px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--dark);
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 40px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--lime);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    border: 2px dashed var(--lime);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(100%);
+    background: var(--lime);
+    border: 2px dashed var(--lime);
+}
+
+input[type="checkbox"]:checked {
+    background: var(--dark);
+    border: 2px dashed var(--lime);
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--dark);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+    color: white;
+    font-family: Arial, sans-serif;
+    z-index: 1; /* Set the z-index to place it above the background */
+    /* Additional styling for your settings panel */
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: auto;
+}
+.iframe-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    filter: blur(2px);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.fa-times {
+    font-size: 24px;
+    cursor: pointer;
+}

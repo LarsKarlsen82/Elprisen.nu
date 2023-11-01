@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,9 +18,9 @@
             </a>
         </div>
         <ul>
-            <li><a href="oversigt.html">OVERSIGT</a></li>
+            <li><a href="./oversigt.html">OVERSIGT</a></li>
             <li> <a href="#">LIGE NU</a></li>
-            <li> <a href="historik.html">HISTORIK</a></li>
+            <li> <a href="./historik.html">HISTORIK</a></li>
         </ul>
     </nav>
 
@@ -31,7 +31,7 @@
             </div>
         </a>
     </section>
-
+<article id="index-content">
     <section class="elpriser">
         <div>
             <h1>ELPRISEN LIGE NU</h1>
@@ -44,12 +44,14 @@
     <section>
         <div class="IndexTime"><p id="time"></p></div>
     </section>
-v
+</article>
     <footer>
         <p> Priserne er <span style="color: var(--lime);">ex.moms</span> og afgifter
             <br>
      Du vises lige nu priserne for <span style="color: var(--lime);">Øst Danmark</span></p>
     </footer>
+
+
 
 <!-- Register the service worker -->
 <script>
@@ -63,5 +65,30 @@ v
             });
     }
 </script>
+
+<script>
+    // Variable to track redirection status
+    let redirected = false;
+
+    // Function to handle window resize
+    function handleResize() {
+        if (window.innerWidth > 1300 && !redirected) {
+            // Redirect to desktop.html
+            window.location.href = "desktop.html";
+            redirected = true;
+        } else if (window.innerWidth <= 1300 && redirected) {
+            // Redirect back to the original page (e.g., mobile.html)
+            window.location.href = "index.html"; // Change to the appropriate URL
+            redirected = false;
+        }
+    }
+
+    // Initial check on page load
+    handleResize();
+
+    // Add a listener for window resize events
+    window.addEventListener('resize', handleResize);
+</script>
+
 </body>
 </html>

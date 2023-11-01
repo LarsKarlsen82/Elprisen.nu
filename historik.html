@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="da">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +7,10 @@
     <link rel="shortcut icon" href="#">
     <script src="https://kit.fontawesome.com/7631ec8517.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-    <script src="./assets/js/historik.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
+    <script src="./assets/js/script.js" defer></script>
     <title>Elpriser.nu</title>
 </head>
 <body>
@@ -33,6 +34,8 @@
         </a>
     </section>
 
+<article id="historik-content">
+
     <section class="historik">
         <h1>HISTORIK</h1>
     </section>
@@ -44,48 +47,46 @@
                 <i class="fa-regular fa-calendar-days"></i>
             </div>
         </div>
-
+        <div class="centered-text">Elpriserne D.14-10-2023</div>
     </section>
     <section class="historik-time">
-        <div class="centered-text">Elpriserne D.14-10-2023</div>
         <div class="historik-time-container">
             <div>kl. 19.00</div>
-            <div>0.524 kr</div>
+            <div class="ChangeColor">0.524 kr</div>
         </div>
-        <div class="historik-time-container">
-            <div>kl. 20.00</div>
-            <div>0.653 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 21.00</div>
-            <div>0.722 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 22.00</div>
-            <div>0.543 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 23.00</div>
-            <div>0.434 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 00.00</div>
-            <div>0.343 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 01.00</div>
-            <div>0.283 kr</div>
-        </div>
-        <div class="historik-time-container">
-            <div>kl. 02.00</div>
-            <div>0.192 kr</div>
-        </div>
-    </section>
 
+    </section>
+</article>
     <footer>
         <p> Priserne er <span style="color: var(--lime);">ex.moms</span> og afgifter
             <br>
      Du vises lige nu priserne for <span style="color: var(--lime);">Øst Danmark</span></p>
     </footer>
+
+    <script>
+        // Variable to track redirection status
+        let redirected = false;
+    
+        // Function to handle window resize
+        function handleResize() {
+            if (window.innerWidth > 1300 && !redirected) {
+                // Redirect to desktop.html
+                window.location.href = "desktop.html";
+                redirected = true;
+            } else if (window.innerWidth <= 1300 && redirected) {
+                // Redirect back to the original page (e.g., mobile.html)
+                window.location.href = "historik.html"; // Change to the appropriate URL
+                redirected = false;
+            }
+        }
+    
+        // Initial check on page load
+        handleResize();
+    
+        // Add a listener for window resize events
+        window.addEventListener('resize', handleResize);
+    </script>
+    
+
 </body>
 </html>

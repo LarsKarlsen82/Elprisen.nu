@@ -4,6 +4,9 @@ const maxCacheSize = 50; // Maximum number of items to keep in the cache
 const assets = [
     '/',
     './index.html',
+    './historik.html',
+    './oversigt.html',
+    './settings.html',
     './js/script.js',
     './css/style.css',
     'https://kit.fontawesome.com/7631ec8517.js',

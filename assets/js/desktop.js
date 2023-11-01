@@ -125,7 +125,6 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-//Historik
 
 document.addEventListener("DOMContentLoaded", function() {
     const centeredText = document.querySelector(".centered-text");
@@ -212,7 +211,6 @@ document.addEventListener("DOMContentLoaded", function() {
     
                 // Update date-picker and centered-text with the selected date in DD-MM-YYYY format
                 datePicker.textContent = formattedDate;
-                centeredText.textContent = `Elpriserne D.${formattedDate}`;
     
                 // Fetch data using the original date format (M-D)
                 fetchData(originalDateFormat);
@@ -270,3 +268,11 @@ toggleButton.addEventListener('click', async () => {
 
 // Fetch data and update UI when the page loads
 updateUI();
+
+
+
+
+    function toggleMenu() {
+        var menu = document.getElementById("burger-menu");
+        menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "flex" : "none";
+    }
