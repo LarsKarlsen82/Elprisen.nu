@@ -23,13 +23,49 @@
                 <p>Elpriserne.nu</p>
         </div>
         <ul>
-            <a href="desktopsettings.html">
-                <div class="settings">
-                    <i class="fas fa-gear"></i>
+            <!-- Trigger/Open The Modal -->
+            <button class="settings" id="myBtn">
+                <i class="fas fa-gear"></i>
+                </button>
+                
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    
+                <div class="modal-content">
+                    <span class="close">
+                        <i class="fa-regular fa-circle-xmark"></i>
+                    </span>
+                    <h2>Indstillinger</h2>
+                    <section class="tester">
+                        <div class="toggle-section">
+                            <label for="priser-toggle">Priser inkl. moms</label>
+                            <input type="checkbox" id="priser-toggle">
+                        </div>
+                
+                        <div class="toggle-section">
+                            <label for="alarm-toggle">Laveste pris alarm</label>
+                            <input type="checkbox" id="alarm-toggle">
+                        </div>
+                        <div class="toggle-section">
+                            <div class="burger-container">
+                                <div class="burger-label">Vælg region</div>
+                                <div class="burger-button" onclick="toggleMenu()">
+                                    <div id="menu-icon"><i class="fas fa-chevron-down"></i></div>
+                                </div>
+                            </div>
+                            <div class="burger-menu" id="burger-menu">
+                                <!-- Add menu items here -->
+                                <p>Region øst</p>
+                                <p>region vest</p>
+                                <!-- ... -->
+                            </div>
+                        </div>
+                    </section>
                 </div>
-            </a>
+                </div>
         </ul>
     </nav>
+
 
 <article id="desktop-content">
     <section class="elpriser">
@@ -45,7 +81,7 @@
         <div class="IndexTime"><p id="time"></p></div>
     </section>
 
-
+<!-- Oversigt -->
     <section>
         <div class="oversigt-text">oversigt</div>
     </section>
@@ -80,12 +116,11 @@
     
         </div>
     </section>
-    
 
     <section class="time">
         <div class="time-container">
             <div>kl. 19.00</div>
-            <div>0.524 kr</div>
+            <div class="time-bottom">0.554 kr</div>
         </div>
 
     </section>
@@ -106,15 +141,13 @@
     <section class="historik-time">
         <div class="historik-time-container">
             <div>kl. 19.00</div>
-            <div class="ChangeColor">0.524 kr</div>
+            <div class="below-text">0.524 kr</div>
         </div>
 
     </section>
 
 
 </article>
-
-
 
 
 <!-- Register the service worker -->

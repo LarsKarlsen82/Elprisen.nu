@@ -24,6 +24,7 @@
         </ul>
     </nav>
 
+
     <section>
         <a href="settings.html">
             <div class="settings">
@@ -64,30 +65,6 @@
                 console.error('Service Worker registration failed:', error);
             });
     }
-</script>
-
-<script>
-    // Variable to track redirection status
-    let redirected = false;
-
-    // Function to handle window resize
-    function handleResize() {
-        if (window.innerWidth > 1300 && !redirected) {
-            // Redirect to desktop.html
-            window.location.href = "desktop.html";
-            redirected = true;
-        } else if (window.innerWidth <= 1300 && redirected) {
-            // Redirect back to the original page (e.g., mobile.html)
-            window.location.href = "index.html"; // Change to the appropriate URL
-            redirected = false;
-        }
-    }
-
-    // Initial check on page load
-    handleResize();
-
-    // Add a listener for window resize events
-    window.addEventListener('resize', handleResize);
 </script>
 
 </body>

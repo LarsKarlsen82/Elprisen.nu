@@ -6,7 +6,7 @@
 
 
 /*Styles for viewport width between 375px and 1400px */
-@media screen and (min-width: 375px) and (max-width: 1400px) {
+@media screen and (min-width: 320px) and (max-width: 1400px) {
 * {
     margin: 0;
     padding: 0;
@@ -315,151 +315,83 @@ display: inline-block;
     text-transform: uppercase; /* Convert text to uppercase */
 }
 
-
-
 /* ------------------------------------------------------------------------------------ */
 
 /* Oversigt CSS */
 
-.circleHead {
-    height: 110vh;
-    justify-content: space-around; /* Adjust the space between circles */
-}
-
-.circleHead-container {
-    bottom: 70%;
-    display: flex;
-    justify-content: space-between;
-    overflow: hidden;
-    align-items: center;
-    font-size: 18px;
-    background-color: var(--dark);
-    color:var(--lightgrey);
-    margin: 10px auto;
-    max-width: 15em;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    border-radius: 0.5em;
-    overflow: hidden;
-    border: 2px solid transparent; /* Set initial border style */
-    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
-    position: relative;
-    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
-}
-
-.circleHead-container:hover {
-    border-color: var(--lime);
-}
-
-.circleHead-label {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.circleHead-value {
-    flex-grow: 1;
-    text-align: right;
-}
-
-.circleHead-container:focus {
-    outline: none;
-    box-shadow: 0 0 10px 5px var(--lime);
-    border-color: transparent;
-}
-
-
 .oversigt-text {
-    text-align: center;
-    margin: 0 auto;
-    padding: 20px; /* Adjust padding as needed */
-    font-size: 30px !important;
+    font-size: x-large; /* Adjust the font size for "oversigt" text */
+    font-weight: 100;
+    margin-bottom: 1em; /* Add margin at the bottom of "oversigt" text */
     color: var(--lightgrey);
-    width: 80%; /* Set a width to limit the container size */
-    text-transform: uppercase; /* Convert text to uppercase */
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.circleHead {
+    height: 20em;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .circles-container {
-    position: relative;
     display: flex;
-    justify-content: space-around; /* Adjust the space between circles */
-    margin: auto;
-    height:30vh;
 }
 
-.circle-oversigt, .circle-oversigt2 {
-    position: relative;
-    margin: 1em 1em 1em 15%;
-    padding: 1em 15% 10% 10%;
-    height: 60%;
-    left: 14%;
-    background-color: var(--dark);
+.circle-oversigt,
+.circle-oversigt2 {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-top: 15%;
+    background-color: var(--dark);
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--lime);
-    font-weight: bold;
-    font-size: xx-large;
-    transform: translate(-50%, -50%);
+    left: 3%;
+    bottom: 100px;
+    margin: 1em;
 }
 
 .circle-oversigt:before,
-
 .circle-oversigt2:before {
-    position: absolute;
     content: '';
-    height: 70%; 
-    width: 70%; 
+    position: absolute;
+    height: 70%;
+    width: 70%;
     border: 2px dashed var(--lime);
     border-radius: 50%;
     animation: spin 60s linear infinite;
     transform-origin: center;
-    top: 5%;
-    left: 5%;
-}
-
-.circle-oversigt:after,
-.circle-oversigt2:after {
-    animation: spin 60s linear infinite reverse;
-}
-
-@keyframes spin { 
-    100% { 
-        transform: rotateZ(-360deg);
-    }
 }
 
 .circle-label {
     position: absolute;
     text-align: center;
     color: var(--lightgrey);
-    font-size: 16px;
-    margin-top: 10px; /* Adjust the margin as needed */
-    top: 60%;
-    right: 60%;
+    font-size: 12px;
+    top: 39%;
+    left: 37%;
+    transform: translateX(-50%);
 }
 .circle-label2 {
     position: absolute;
     text-align: center;
     color: var(--lightgrey);
-    font-size: 16px;
-    margin-top: 10px; /* Adjust the margin as needed */
-    top: 60%;
-    left: 60%;
+    font-size: 12px;
+    top: 39%;
+    left: 66%;
+    transform: translateX(-50%);
 }
+
 
 .text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100px;
+    width: 250px;
 
 }
 
@@ -477,11 +409,7 @@ display: inline-block;
     color: var(--lightgrey);
 }
 
-.oversigt-text {
-    font-size: 18px; /* Adjust the font size for "oversigt" text */
-    margin-bottom: 1em; /* Add margin at the bottom of "oversigt" text */
-    text-align: center;
-}
+
 
 .time {
     height: 170vh;
@@ -489,7 +417,7 @@ display: inline-block;
 }
 
 .time-container {
-    bottom: 50%;
+    bottom: 10%;
     display: flex;
     justify-content: space-between;
     overflow: hidden;

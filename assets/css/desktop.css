@@ -30,7 +30,7 @@ body {
   }
 
 
-/* MOBILE STYLES */
+
 
 /* NAV indstilligner */
 nav {
@@ -79,6 +79,8 @@ a:hover {
 
 
 
+/* Modal */
+
 /* Tandhjul knap til top højre */
 .settings {
     margin-left: 80% !important;; /* Placerer .settings til højre kant af forældrecontaineren */
@@ -88,6 +90,179 @@ a:hover {
     color: var(--lime); /* Ændrer ikonfarven til limegrøn */
 }
 
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    color: var(--lightgrey);
+    backdrop-filter: blur(8px); /* Add a blur effect to the background */
+
+  
+  }
+  
+  /* Modal Content */
+  .modal-content {
+    background-color: var(--darkgrey);
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    height: 80%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+
+}
+.modal-content h2 {
+    text-align: left;
+    margin-bottom: 40px; /* Add some bottom margin for spacing */
+}
+  /* The Close Button */
+  .close {
+    color: #aaaaaa;
+    position: absolute;
+    top: 109px; /* Adjust the top distance as needed */
+    right: 31%; /* Adjust the right distance as needed */
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+  }
+#myBtn {
+ background-color: var(--dark);
+ color: var(--lime);
+
+}
+
+.tester {
+    color: var(--lightgrey);
+    text-transform: uppercase;
+}
+
+.settings-text {
+    font-size: xx-large;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--lightgrey);
+    margin: 10%;
+}
+
+.toggle-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid var(--lightgrey);
+}
+
+
+.burger-container {
+    display: flex;
+    align-items: center;
+}
+
+.burger-button {
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.burger-menu {
+    display: none;
+    /* Initially hide the menu */
+    flex-direction: column;
+    margin-top: 10px;
+}
+
+.burger-menu p {
+    margin: 5px 0;
+}
+
+#priser-toggle:checked~.toggle-section,
+#alarm-toggle:checked~.toggle-section,
+#region-toggle:checked~.toggle-section {
+    display: none;
+}
+
+input[type="checkbox"] {
+    position: relative;
+    width: 80px;
+    height: 35px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: var(--dark);
+    outline: none;
+    border-radius: 2rem;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgb(0 0 0 / 50%);
+}
+
+input[type="checkbox"]::before {
+    content: "";
+    width: 40px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--lime);
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: 0.5s;
+    border: 2px dashed var(--lime);
+}
+
+input[type="checkbox"]:checked::before {
+    transform: translateX(100%);
+    background: var(--lime);
+    border: 2px dashed var(--lime);
+}
+
+input[type="checkbox"]:checked {
+    background: var(--dark);
+    border: 2px dashed var(--lime);
+}
+
+.background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    overflow: auto;
+}
+.iframe-container {
+    width: 100vw;
+    height: 100vh;
+    overflow: auto;
+    filter: blur(2px);
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+.fa-times {
+    font-size: 24px;
+    cursor: pointer;
+}
 
 /* --------------------------------------------------------------- */
 
@@ -104,12 +279,13 @@ a:hover {
 /* --------------------------------------------------------------- */
 
 
+
 /* EL PRISER SEKTIONEN */
 .elpriser {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 65vh;
+    height: 70vh;
     background-color: var(--darkgrey);
     margin: 2em;
 }
@@ -122,17 +298,17 @@ a:hover {
 .elpriser h1 {
     color: var(--lightgrey);
     font-weight: 300;
-    font-size: large;
+    font-size: x-large;
     position: absolute;
     top: 20%;
-    left: 11%;
+    left: 11.5%;
 }
 
 .circle {
     position: relative;
     margin: 20px;
-    height: 10em;
-    width: 10em;
+    height: 15em;
+    width: 15em;
     background-color: var(--dark);
     border-radius: 50%;
     overflow: hidden; /* Ensure content inside the circle is hidden when rotating */
@@ -185,12 +361,12 @@ a:hover {
 
 
 .IndexTime{
-    height: 40vh;
+    height: 20vh;
     left: 100%;
 }
 .IndexTime p {
-top: 70% !important;
-left: 17% !important;
+top: 62% !important;
+left: 16.5% !important;
 }
 .IndexTime p {
     text-align: center;
@@ -211,108 +387,53 @@ left: 17% !important;
 
 /* Oversigt CSS */
 
+.oversigt-text {
+    color: var(--lightgrey);
+    font-weight: 300;
+    font-size: x-large;
+    position: absolute;
+    top: 20%;
+    left: 37%;
+    text-transform: uppercase;
+}
+
+
 .circleHead {
-    height: 110vh;
-    justify-content: space-around; /* Adjust the space between circles */
-}
-
-.circleHead-container {
-    bottom: 70%;
+    height: 2em;
     display: flex;
-    justify-content: space-between;
-    overflow: hidden;
+    justify-content: space-around;
     align-items: center;
-    font-size: 18px;
-    background-color: var(--dark);
-    color:var(--lightgrey);
-    margin: 10px auto;
-    max-width: 15em;
-    padding: 20px;
-    height: 100%;
-    width: 100%;
-    border-radius: 0.5em;
-    overflow: hidden;
-    border: 2px solid transparent; /* Set initial border style */
-    transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
-    position: relative;
-    box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
 }
-
-.circleHead-container:hover {
-    border-color: var(--lime);
-}
-
-.circleHead-label {
-    font-weight: bold;
-    margin-right: 10px;
-}
-
-.circleHead-value {
-    flex-grow: 1;
-    text-align: right;
-}
-
-.circleHead-container:focus {
-    outline: none;
-    box-shadow: 0 0 10px 5px var(--lime);
-    border-color: transparent;
-}
-
 
 .circles-container {
-    position: relative;
     display: flex;
-    justify-content: space-around; /* Adjust the space between circles */
-    margin: auto;
-    height:30vh;
 }
 
-.circle-oversigt, .circle-oversigt2 {
-    position: relative;
-    margin: 1em 1em 1em 15%;
-    padding: 1em 15% 10% 10%;
-    height: 60%;
-    left: 14%;
-    background-color: var(--dark);
+.circle-oversigt,
+.circle-oversigt2 {
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
-    overflow: hidden;
-    margin-top: 15%;
+    background-color: var(--dark);
+    position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    text-align: center;
-    text-transform: uppercase;
-    color: var(--lime);
-    font-weight: bold;
-    font-size: xx-large;
-    transform: translate(-50%, -50%);
+    left: 3%;
+    bottom: 130px;
+    margin: 1em;
 }
 
 .circle-oversigt:before,
-
 .circle-oversigt2:before {
-    position: absolute;
     content: '';
-    height: 70%; 
-    width: 70%; 
+    position: absolute;
+    height: 70%;
+    width: 70%;
     border: 2px dashed var(--lime);
     border-radius: 50%;
     animation: spin 60s linear infinite;
     transform-origin: center;
-    top: 5%;
-    left: 5%;
-}
-
-.circle-oversigt:after,
-.circle-oversigt2:after {
-    animation: spin 60s linear infinite reverse;
-}
-
-@keyframes spin { 
-    100% { 
-        transform: rotateZ(-360deg);
-    }
 }
 
 .circle-label {
@@ -320,26 +441,27 @@ left: 17% !important;
     text-align: center;
     color: var(--lightgrey);
     font-size: 16px;
-    margin-top: 10px; /* Adjust the margin as needed */
-    top: 60%;
-    right: 60%;
+    top: 82%;
+    left: 13.5%;
+    transform: translateX(-50%);
 }
 .circle-label2 {
     position: absolute;
     text-align: center;
     color: var(--lightgrey);
     font-size: 16px;
-    margin-top: 10px; /* Adjust the margin as needed */
-    top: 60%;
-    left: 60%;
+    top: 82%;
+    left: 20.5%;
+    transform: translateX(-50%);
 }
+
 
 .text-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 100px;
+    width: 250px;
 
 }
 
@@ -357,25 +479,22 @@ left: 17% !important;
     color: var(--lightgrey);
 }
 
-.oversigt-text {
-    color: var(--lightgrey);
-    font-weight: 300;
-    font-size: large;
-    position: absolute;
-    top: 20%;
-    left: 47%;
-    text-transform: uppercase;
-}
 
 .lower-text {
     text-align: left;
-    margin-left: 15%;
+    margin-left: 1%;
+    position: absolute;
+    max-width: 240px;
+    top: 100%;
 
 }
 .lower-text p {
     color:var(--lightgrey);
     text-transform: uppercase;
+
 }
+
+/* ------------------------------------------------ */
 
 .time {
     height: 80vh;
@@ -383,7 +502,7 @@ left: 17% !important;
 }
 
 .time-container {
-    bottom: 80%;
+    bottom: 70%;
     display: flex;
     justify-content: space-between;
     overflow: hidden;
@@ -401,6 +520,7 @@ left: 17% !important;
     transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
     position: relative;
     box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
+    right: 30%;
 }
 
 .time-container:hover {
@@ -448,10 +568,10 @@ left: 17% !important;
 .historik h1 {
     color: var(--lightgrey);
     font-weight: 300;
-    font-size: large;
+    font-size: x-large;
     position: absolute;
     top: 20%;
-    left: 70%;
+    left: 59.9%;
 }
 
 
@@ -463,15 +583,15 @@ left: 17% !important;
     color:var(--lightgrey);
     margin: 15%;
     padding: 5%;
-    height: 2.5em;
-    width: 65%;
+    height: 0.5em;
+    width: 43%;
     border-radius: 0.5em;
     overflow: hidden;
     border: 2px solid transparent; /* Set initial border style */
     transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
     position: relative;
-    bottom: 462%;
-    left: 190%;
+    bottom: 366%;
+    left: 155%;
     box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
 }
 
@@ -515,8 +635,8 @@ left: 17% !important;
     transition: border-color 0.5s ease; /* Add a smooth transition effect for border-color changes */
     position: relative;
     box-shadow: 1px 0px 15px 0px rgba(255, 255, 255, 0.6);
-    left: 85%;
-    bottom: 400%;
+    left: 40%;
+    bottom: 320%;
     width: 65%;
 }
 

@@ -1,21 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    if (window.innerWidth >= 1401) {
+    if (window.innerWidth >= 1401 && !window.location.href.includes('desktop.html')) {
         window.location.href = "desktop.html";
     }
 });
 
-function toggleMenu() {
-    let menu = document.getElementById("burger-menu");
-    let icon = document.getElementById("menu-icon");
-
-    if (menu.style.display === "none" || menu.style.display === "") {
-        menu.style.display = "block";
-        icon.innerHTML = '<i class="fas fa-chevron-up"></i>'; // Up arrow
-    } else {
-        menu.style.display = "none";
-        icon.innerHTML = '<i class="fas fa-chevron-down"></i>'; // Down arrow
-    }
-}
 
 // Fetch lige nu data til "index"
 
@@ -111,6 +99,27 @@ document.addEventListener("DOMContentLoaded", function() {
                     const timeDiv = document.createElement("div");
                     timeDiv.classList.add("time-container");
                     timeDiv.innerHTML = `<div>kl. ${item.time}</div><div>${item.price.toFixed(3)} kr</div>`;
+
+                    // Adjust the color based on price ranges using switch statement
+                    const priceDiv = timeDiv.querySelector("div:last-child");
+                    switch (true) {
+                        case (item.price >= -0.5 && item.price <= 0.099):
+                            priceDiv.style.color = "lightblue";
+                            break;
+                        case (item.price >= 0.1 && item.price <= 0.45):
+                            priceDiv.style.color = "limegreen";
+                            break;
+                        case (item.price > 0.45 && item.price <= 0.7099):
+                            priceDiv.style.color = "orange";
+                            break;
+                        case (item.price > 0.71 && item.price <= 2.0):
+                            priceDiv.style.color = "red";
+                            break;
+                        default:
+                            // Handle other cases if needed
+                            break;
+                    }
+
                     timeContainer.appendChild(timeDiv);
                 });
             })
@@ -123,7 +132,6 @@ document.addEventListener("DOMContentLoaded", function() {
     // Call fetchTodayData function to fetch and display today's data
     fetchTodayData();
 });
-
 
 //Historik
 
@@ -196,7 +204,12 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-            historikContainer.innerHTML = "Error fetching data.";
+            historikContainer.innerHTML = "Data findes ikke.";
+            historikContainer.style.display = "flex";
+            historikContainer.style.justifyContent = "center";
+            historikContainer.style.alignItems = "center";
+            historikContainer.style.color = "white";
+            historikContainer.style.marginTop = "1200px";
         });
 }
     
@@ -227,46 +240,51 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
+
 // Settings
 
-// Function to fetch data from an external source
-async function fetchData() {
-    try {
-        const response = await fetch('https://api.example.com/data'); // Replace this with your API endpoint
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-    }
-}
+document.addEventListener("DOMContentLoaded", function() {
+    const priserToggle = document.getElementById("priser-toggle");
+    const alarmToggle = document.getElementById("alarm-toggle");
+    const burgerMenu = document.getElementById("burger-menu");
+    const menuIcon = document.getElementById("menu-icon");
 
-// Function to multiply data by 1.25
-function multiplyData(data) {
-    return data * 1.25;
-}
-
-// Update UI with fetched data
-async function updateUI() {
-    const dataElement = document.getElementById('data');
-    const data = await fetchData();
-    if (data !== null) {
-        dataElement.textContent = data;
-    } else {
-        dataElement.textContent = 'Error fetching data';
+    // Function to toggle the menu
+    function toggleMenu() {
+        if (burgerMenu.style.display === "none" || burgerMenu.style.display === "") {
+            burgerMenu.style.display = "block";
+            menuIcon.innerHTML = '<i class="fas fa-chevron-up"></i>'; // Up arrow
+        } else {
+            burgerMenu.style.display = "none";
+            menuIcon.innerHTML = '<i class="fas fa-chevron-down"></i>'; // Down arrow
+        }
     }
-}
 
-// Handle button click event
-const toggleButton = document.getElementById('priser-toggle');
-toggleButton.addEventListener('click', async () => {
-    const dataElement = document.getElementById('data');
-    const currentData = parseFloat(dataElement.textContent);
-    if (!isNaN(currentData)) {
-        const newData = multiplyData(currentData);
-        dataElement.textContent = newData;
+    // Attach the toggleMenu function to the burger button click event
+    const burgerButton = document.querySelector(".burger-button");
+    burgerButton.addEventListener("click", toggleMenu);
+
+    // Check and set initial state for priser-toggle and alarm-toggle from localStorage
+    const priserToggleState = localStorage.getItem("priserToggleState");
+    const alarmToggleState = localStorage.getItem("alarmToggleState");
+
+    if (priserToggleState) {
+        priserToggle.checked = JSON.parse(priserToggleState);
     }
+
+    if (alarmToggleState) {
+        alarmToggle.checked = JSON.parse(alarmToggleState);
+    }
+
+    // Store the state of priser-toggle and alarm-toggle in localStorage when clicked
+    priserToggle.addEventListener("change", function() {
+        localStorage.setItem("priserToggleState", priserToggle.checked);
+    });
+
+    alarmToggle.addEventListener("change", function() {
+        localStorage.setItem("alarmToggleState", alarmToggle.checked);
+    });
 });
 
-// Fetch data and update UI when the page loads
-updateUI();
+
+

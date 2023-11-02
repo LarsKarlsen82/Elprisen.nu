@@ -1,4 +1,5 @@
-const staticCacheName = 'site-static';
+const staticCacheName = 'site-static-v1';
+const dynamicCacheName = 'site-dynamic-v1';
 const maxCacheSize = 50; // Maximum number of items to keep in the cache
 
 const assets = [
@@ -7,17 +8,20 @@ const assets = [
     './historik.html',
     './oversigt.html',
     './settings.html',
-    './js/script.js',
-    './css/style.css',
+    './desktop.html',
+    './assets/css/style.css',
+    './assets/css/desktop.css',
     'https://kit.fontawesome.com/7631ec8517.js',
-    // './assets/images', 
+    './assets/js/script.js',
+    './assets/js/desktop.js',
+    './assets/images',
+    './fallback.html'
 ];
 
 self.addEventListener('install', evt => {
     evt.waitUntil(
         caches.open(staticCacheName).then(cache => {
-            console.log('Caching shell assets');
-            cache.addAll(assets);
+            return cache.addAll(assets);
         })
     );
 });
@@ -26,7 +30,7 @@ self.addEventListener('activate', evt => {
     evt.waitUntil(
         caches.keys().then(keys => {
             return Promise.all(keys
-                .filter(key => key !== staticCacheName)
+                .filter(key => key !== staticCacheName && key !== dynamicCacheName)
                 .map(key => caches.delete(key))
             );
         })
@@ -36,9 +40,9 @@ self.addEventListener('activate', evt => {
 
 self.addEventListener('fetch', evt => {
     evt.respondWith(
-        caches.open(staticCacheName).then(cache => {
-            return cache.match(evt.request).then(cacheResponse => {
-                const fetchPromise = fetch(evt.request).then(fetchResponse => {
+        caches.match(evt.request).then(cacheResponse => {
+            return cacheResponse || fetch(evt.request).then(fetchResponse => {
+                return caches.open(dynamicCacheName).then(cache => {
                     cache.put(evt.request, fetchResponse.clone());
 
                     // Check cache size and remove old entries if necessary
@@ -49,11 +53,7 @@ self.addEventListener('fetch', evt => {
                         return fetchResponse;
                     });
                 });
-
-                return cacheResponse || fetchPromise;
-            });
+            }).catch(() => caches.match('/fallback.html'));
         })
     );
 });
-
-// Link: https://www.youtube.com/watch?v=kT3qSf7jG5c&ab_channel=NetNinja

@@ -1,8 +1,49 @@
-document.addEventListener("DOMContentLoaded", function() {
-    if (window.innerWidth >= 1401) {
+function checkWindowWidth() {
+    if (window.innerWidth >= 1401 && !window.location.href.includes('desktop.html')) {
         window.location.href = "desktop.html";
     }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    checkWindowWidth();
+    window.addEventListener("resize", checkWindowWidth);
 });
+
+
+
+
+
+// Modal
+
+// Get the modal
+let modal = document.getElementById("myModal");
+
+// Get the button that opens the modal
+let btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+let span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+  modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+  modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
+
+// ----------------------------------------------------
+
+
 
 function toggleMenu() {
     let menu = document.getElementById("burger-menu");
@@ -54,8 +95,8 @@ document.addEventListener("DOMContentLoaded", async function() {
             const startTime = new Date(currentItem.time_start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             const endTime = new Date(currentItem.time_end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-            elprisElement.textContent = `Elpris: ${elpris} kr per kWh`;
-            timeElement.textContent = `Tidspunkt: ${startTime} - ${endTime}`;
+            elprisElement.textContent = `${elpris} kr per kWh`;
+            timeElement.textContent = ` ${startTime} - ${endTime}`;
         } else {
             elprisElement.textContent = "Data not available for the current time.";
             timeElement.textContent = "";
@@ -70,6 +111,59 @@ document.addEventListener("DOMContentLoaded", async function() {
 
 //Oversigt
 
+// document.addEventListener("DOMContentLoaded", function() {
+//     const timeContainer = document.querySelector(".time"); // Select the time-container element
+//     const lowestPriceElement = document.querySelector(".circle-oversigt .top-text");
+//     const highestPriceElement = document.querySelector(".circle-oversigt2 .top-text");
+
+//     function fetchTodayData() {
+//         const currentDate = new Date().toLocaleDateString('en-US', { month: '2-digit', day: '2-digit' }).replace(/\//g, '-');
+//         const apiUrl = `https://www.elprisenligenu.dk/api/v1/prices/2023/${currentDate}_DK2.json`;
+
+//         fetch(apiUrl)
+//             .then(response => {
+//                 if (!response.ok) {
+//                     throw new Error("Network response was not ok");
+//                 }
+//                 return response.json();
+//             })
+//             .then(data => {
+//                 // Clear previous data in time-container
+//                 timeContainer.innerHTML = "";
+
+//                 // Extract time and price values for the first 8 entries
+//                 const timeAndPrices = data.slice(0, 24).map(entry => {
+//                     return {
+//                         time: entry.time_start.slice(11, 16),
+//                         price: parseFloat(entry.DKK_per_kWh)
+//                     };
+//                 });
+
+//                 // Find lowest and highest prices
+//                 const lowestPrice = Math.min(...timeAndPrices.map(item => item.price));
+//                 const highestPrice = Math.max(...timeAndPrices.map(item => item.price));
+
+//                 // Update lowest and highest price elements
+//                 lowestPriceElement.textContent = `${lowestPrice.toFixed(3)} KR`;
+//                 highestPriceElement.textContent = `${highestPrice.toFixed(3)} KR`;
+
+//                 // Populate the time-container with the first 8 entries
+//                 timeAndPrices.forEach(item => {
+//                     const timeDiv = document.createElement("div");
+//                     timeDiv.classList.add("time-container");
+//                     timeDiv.innerHTML = `<div>kl. ${item.time}</div><div>${item.price.toFixed(3)} kr</div>`;
+//                     timeContainer.appendChild(timeDiv);
+//                 });
+//             })
+//             .catch(error => {
+//                 console.error("Error fetching data:", error);
+//                 // Handle error here if necessary
+//             });
+//     }
+
+//     // Call fetchTodayData function to fetch and display today's data
+//     fetchTodayData();
+// });
 document.addEventListener("DOMContentLoaded", function() {
     const timeContainer = document.querySelector(".time"); // Select the time-container element
     const lowestPriceElement = document.querySelector(".circle-oversigt .top-text");
@@ -111,6 +205,27 @@ document.addEventListener("DOMContentLoaded", function() {
                     const timeDiv = document.createElement("div");
                     timeDiv.classList.add("time-container");
                     timeDiv.innerHTML = `<div>kl. ${item.time}</div><div>${item.price.toFixed(3)} kr</div>`;
+
+                    // Adjust the color based on price ranges using switch statement
+                    const priceDiv = timeDiv.querySelector("div:last-child");
+                    switch (true) {
+                        case (item.price >= -0.5 && item.price <= 0.099):
+                            priceDiv.style.color = "lightblue";
+                            break;
+                        case (item.price >= 0.1 && item.price <= 0.45):
+                            priceDiv.style.color = "limegreen";
+                            break;
+                        case (item.price > 0.45 && item.price <= 0.7099):
+                            priceDiv.style.color = "orange";
+                            break;
+                        case (item.price > 0.71 && item.price <= 2.0):
+                            priceDiv.style.color = "red";
+                            break;
+                        default:
+                            // Handle other cases if needed
+                            break;
+                    }
+
                     timeContainer.appendChild(timeDiv);
                 });
             })
@@ -195,7 +310,11 @@ document.addEventListener("DOMContentLoaded", function() {
         })
         .catch(error => {
             console.error("Error fetching data:", error);
-            historikContainer.innerHTML = "Error fetching data.";
+            historikContainer.innerHTML = "Data findes ikke.";
+
+            historikContainer.style.color = "white";
+            historikContainer.style.marginTop = "-1080px";
+            historikContainer.style.marginLeft = "450px";
         });
 }
     
@@ -225,54 +344,63 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-// Settings
+// Priser inkl. moms toggle-ting
 
-// Function to fetch data from an external source
-async function fetchData() {
-    try {
-        const response = await fetch('https://api.example.com/data'); // Replace this with your API endpoint
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        return null;
-    }
-}
+document.addEventListener('DOMContentLoaded', function() {
+    // Get the initial value of elprisElement
+    const initialElprisValue = parseFloat(document.getElementById('elpris').textContent);
+    const textContainerElements = document.querySelectorAll('.text-container .top-text');
+    const timeContainerElements = document.querySelectorAll('.time-container .time-bottom');
+    const historikTimeContainerElements = document.querySelectorAll('.historik-time-container .below-text');
+    const priserToggle = document.getElementById('priser-toggle');
 
-// Function to multiply data by 1.25
-function multiplyData(data) {
-    return data * 1.25;
-}
+    let isToggled = false;
 
-// Update UI with fetched data
-async function updateUI() {
-    const dataElement = document.getElementById('data');
-    const data = await fetchData();
-    if (data !== null) {
-        dataElement.textContent = data;
-    } else {
-        dataElement.textContent = 'Error fetching data';
-    }
-}
+    priserToggle.addEventListener('click', function() {
+        isToggled = !isToggled;
 
-// Handle button click event
-const toggleButton = document.getElementById('priser-toggle');
-toggleButton.addEventListener('click', async () => {
-    const dataElement = document.getElementById('data');
-    const currentData = parseFloat(dataElement.textContent);
-    if (!isNaN(currentData)) {
-        const newData = multiplyData(currentData);
-        dataElement.textContent = newData;
-    }
+        if (isToggled) {
+            // Multiply the initial value by 1.25 when toggled
+            const newElprisValue = (initialElprisValue * 1.25).toFixed(3);
+            document.getElementById('elpris').textContent = newElprisValue + ' KR';
+            console.log(isToggled);
+
+            textContainerElements.forEach(function(element) {
+                const topText = parseFloat(element.textContent) * 1.25;
+                element.textContent = topText.toFixed(3);
+            });
+
+            timeContainerElements.forEach(function(element) {
+                const timeBottom = parseFloat(element.textContent) * 1.25;
+                element.textContent = timeBottom.toFixed(3) + ' kr';
+            });
+
+            historikTimeContainerElements.forEach(function(element) {
+                const belowText = parseFloat(element.textContent) * 1.25;
+                element.textContent = belowText.toFixed(3) + ' kr';
+            });
+        } else {
+            // Restore the initial value when toggled again
+            document.getElementById('elpris').textContent = initialElprisValue.toFixed(3) + ' KR';
+
+            textContainerElements.forEach(function(element) {
+                const topText = parseFloat(element.textContent) / 1.25;
+                element.textContent = topText.toFixed(3);
+            });
+
+            timeContainerElements.forEach(function(element) {
+                const price = parseFloat(element.textContent) / 1.25;
+                element.textContent = price.toFixed(3) + ' kr';
+            });
+
+            historikTimeContainerElements.forEach(function(element) {
+                const price = parseFloat(element.textContent) / 1.25;
+                element.textContent = price.toFixed(3) + ' kr';
+            });
+        }
+    });
 });
 
-// Fetch data and update UI when the page loads
-updateUI();
 
 
 
-
-    function toggleMenu() {
-        var menu = document.getElementById("burger-menu");
-        menu.style.display = (menu.style.display === "none" || menu.style.display === "") ? "flex" : "none";
-    }
